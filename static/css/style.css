@@ -1,0 +1,46 @@
+*{
+    /* box-sizing: border-box; */
+    margin: 0;
+}
+
+.payment-options input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+    height: 0;
+    margin: 0;
+
+  }
+
+.payment-options label:hover{
+    cursor: pointer;
+}
+
+
+.payment-options .pay-logo{
+    display: inline-block;
+    border: 2px solid rgb(216, 216, 216);
+    border-radius: 10px;
+    height: 90px;
+    width: 150px;
+}
+.payment-options img{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    height: 70px;
+    width: 70px;
+}
+input:checked ~ .pay-logo{
+    border: 2px solid rgb(25, 0, 255);
+}
+
+form{
+    width: 50%;
+}
+.product-img{
+    width: 100px;
+    height: 100px;
+}
