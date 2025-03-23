@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/css/style.css">
     <script type="text/javascript" src="https://sandbox.web.squarecdn.com/v1/square.js"></script>
     <title>Checkout</title>
 </head>
@@ -50,31 +49,110 @@
         </label>
     </div> -->
 
-    <form id="payment-form">
-        <div id="google-pay-button"></div>
-        <div id="apple-pay-button"></div>
-        <div id="cash-app-pay"></div>
-        <div id="card-container"></div>
-        <button id="card-button" type="button">Pay $1.00</button>
-      </form>
-      <div id="order-total">
-        <div>
-            <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
-            <span class="product-desc">Swivel chair</span>
-            <span class="product-price">$47.00</span>
-        </div>
-        <hr>
-        <div>
-            <span class="subtotal">Subtotal</span>
-            <span class="subtotal-price">$47.00</span>
-            <hr>
-            <span class="total">total</span>
-            <span class="total">$47.00</span>
+    <div class="flex-container">
+        <div class="flex-item-left">
+            <div class="flex-container pay-btn-container">
+                <div class= "flex-item-pay-btn" id="google-pay-button"></div>
+                <div class= "flex-item-pay-btn" id="test-button"><span>APPLE PAY</span></div>
+                <div class= "flex-item-pay-btn" id="cash-app-pay"></div>
+                <!-- <div id="apple-pay-button"></div> -->
+            </div>
+
+            <!-- card Payment -->
+            <div class="hr">OR</div>
+            <form class="card-payment-form" id="payment-form">
+                <h3>Card Payment</h3>
+                <div id="card-container"></div>
+                <button id="card-button" type="button">Pay $1.00</button>
+            </form>
+
+            <!-- Bank Payment -->
+            <div class="hr">OR</div>
+            <form class="ach-payment-form" id="payment-form">
+                <fieldset class="buyer-inputs">
+                <h3>Bank Payment</h3>
+                 <input
+                   type="text"
+                   autocomplete="given-name"
+                   aria-required="true"
+                   aria-label="First Name"
+                   required="required"
+                   placeholder="Given Name"
+                   name="givenName"
+                   spellcheck="false"
+                 />
+           
+                 <input
+                   type="text"
+                   autocomplete="family-name"
+                   aria-required="true"
+                   aria-label="Last Name"
+                   required="required"
+                   placeholder="Family Name"
+                   name="familyName"
+                   spellcheck="false"
+                 />
+               </fieldset>
+               <button id="ach-button" type="button">Pay with Bank Account</button>
+              </form>
         </div>
         
-      </div>
+        <div class="flex-item-right" id="order-total">
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span><br>
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span>
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span>br
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span>
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span>
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span>
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <span class="product-desc">Swivel chair</span>
+                <span class="product-price">$47.00</span>
+            </div>
+            <hr>
+            <div>
+                <span class="subtotal">Subtotal</span>
+                <span class="subtotal-price">$47.00</span>
+                <hr>
+                <span class="total">total</span>
+                <span class="total">$47.00</span>
+            </div>
+        </div>
+
+    </div>
 
     <!-- <script src="/static/js/square_client.js"></script> -->
     <script src="{{ url_for('static', filename='js/square_client.js') }}"></script>
+    <link rel="stylesheet" href="/static/css/style.css">
 </body>
 </html>

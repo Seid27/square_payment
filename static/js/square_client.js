@@ -7,8 +7,14 @@ const locationId = 'LDTPR9XCEFDF9';
 //     await card.attach('#card-container'); 
 //     return card; 
 //   }
- 
- document.addEventListener('DOMContentLoaded', async function () {
+// const cashAppBtn = document.querySelector("#cash-app-pay");
+// document.querySelector("#cash-app-pay").shadowRoot.querySelector("button").style.color("red");
+console.log(document.querySelector("#cash_app_pay_v1_element"));
+// cash_app_pay_v1_element
+// div
+// ShadowRoot
+// button
+document.addEventListener('DOMContentLoaded', async function () {
 
   if (!window.Square) {
     throw new Error('Square.js failed to load properly');
@@ -18,8 +24,9 @@ const locationId = 'LDTPR9XCEFDF9';
   try {
     await initializeCard(payments);
     await initializeGooglePay(payments);
-    // await initializeApplePay(payments);
     await initializeCashApp(payments);
+    await initializeACH(payments);
+    // await initializeApplePay(payments);
   } catch (e) {
     console.error('Initializing Card failed', e);
     return;
@@ -99,6 +106,20 @@ async function initializeCashApp(payments) {
     redirectURL: 'https://my.website/checkout',
     referenceId: 'my-website-00000001',
   });
-  await cashAppPay.attach('#cash-app-pay');
+  const buttonOptions = {
+    shape: 'semiround',
+    width: 'static',
+    size: 'medium',
+    };
+  await cashAppPay.attach('#cash-app-pay', buttonOptions);
   return cashAppPay;
+}
+
+async function initializeACH(payments) {
+  let redirectURI= '';
+  let transactionId = '';
+  const ach = await payments.ach({ redirectURI, transactionId });
+  // Note: ACH doesn't have an .attach(...) method
+  // the ACH auth flow is triggered by .tokenize(...)
+  return ach;
 }
