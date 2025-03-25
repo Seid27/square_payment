@@ -1,10 +1,11 @@
 *{
     /* box-sizing: border-box; */
     margin: 0;
+    font-family: "Square Sans Text VF","Square Sans Text",Arial,sans-serif;
 }
 
 body{
-    margin: 7%;
+    margin: 9% 4%;
 }
 
 .card-payment-form, .ach-payment-form{
@@ -91,24 +92,43 @@ fieldset{
     margin: 5px;
   } */
 .pay-btn-container{
-    padding: 30px 0 30px 0;
+    padding: 30px;
     border: 2px solid #F4F4F4;
     /* background-color: #F4F4F4; */
-    justify-content: space-around;
+    justify-content: center;
 }
 
-/* .flex-item-pay-btn{
+.flex-item-pay-btn{
     margin: 10px;
-} */
+}
 .flex-item-left {
     padding: 10px;
-    flex: 75%;
+    flex: 70%;
   }
   
 .flex-item-right {
-    padding: 10px;
-    flex: 25%;
+    /* padding: 10px; */
+    flex: 30%;
     background-color: #EEEEEE;
+}
+
+.flex-item-right div{
+    /* background-color: red; */
+    /* position: relative; */
+    /* height: 100px; */
+}
+
+.flex-item-right img{
+    margin: 10px 5px 10px 10px;
+}
+
+.flex-item-right div div{
+    display: inline-block;
+    /* background-color: green; */
+    position: relative;
+    top: 85%;
+    translate: 0 -85%;
+    /* translate: 0 -50%; */
 }
 
 #test-button{
@@ -125,6 +145,7 @@ button{
     background-color: black;
     color: white;
     border-radius: 5px;
+    border: none;
 }
 
 #test-button span{
@@ -139,5 +160,34 @@ button{
     height: 48px;
 }
 
+.ach-payment-form input{
+    font-size: 16px;
+    border-radius: 5px;
+    height: 36px;
+    width: 50%;
+    border: 2px solid rgb(228, 228, 228);
+    padding: 2px 10px;
+    margin: 10px 0 10px 0;
+}
 
 
+hr{
+    color: rgba(241, 241, 241, 0.5);
+    margin: 0px 10px;
+}
+
+.product-price{
+    font-size: 14px;
+    font-weight: 100;
+    color: rgba(109, 109, 109, 0.9);
+}
+
+
+
+
+
+
+
+
+/* font-family: "Square Sans Text VF","Square Sans Text",Arial,sans-serif; */
+/* font-size: 16px; */

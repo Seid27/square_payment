@@ -108,7 +108,6 @@ async function initializeCashApp(payments) {
   });
   const buttonOptions = {
     shape: 'semiround',
-    width: 'static',
     size: 'medium',
     };
   await cashAppPay.attach('#cash-app-pay', buttonOptions);
