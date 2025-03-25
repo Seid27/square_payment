@@ -75,7 +75,6 @@ fieldset{
     flex-basis: 100%;
     align-items: center;
     color: rgba(101, 101, 101, 0.5);
-    margin: 20px 0px;
 }
 .hr:before,
 .hr:after {
@@ -85,7 +84,6 @@ fieldset{
     height: 1px;
     font-size: 0px;
     line-height: 0px;
-    margin: 0px 20px;
 }
 
 /* .flex-item-pay-btn{
