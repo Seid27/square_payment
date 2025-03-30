@@ -7,7 +7,7 @@
     <title>Checkout</title>
 </head>
 <body>
-    <h1>Checkout</h1>
+    <!-- <h1>Choose Payment Option</h1> -->
     <!-- <img class="payment-method" id="card" src="/static/images/applePay.png" width="80px" height="80px" alt="">
     <img class="payment-method" id="apple-pay" src="/static/images/applePay.png" width="80px" height="80px" alt="">
     <img class="payment-method" id="google-pay" src="/static/images/applePay.png" width="80px" height="80px" alt="">
@@ -49,55 +49,87 @@
         </label>
     </div> -->
 
+    
+
     <div class="flex-container">
         <div class="flex-item-left">
-            <div class="flex-container pay-btn-container">
-                <div class= "flex-item-pay-btn" id="google-pay-button"></div>
-                <div class= "flex-item-pay-btn" id="test-button"><span>APPLE PAY</span></div>
-                <div class= "flex-item-pay-btn" id="cash-app-pay"></div>
-                <!-- <div id="apple-pay-button"></div> -->
+            <div class="tabs-container">
+                <ul class="tabs">
+                    <!-- <img src="https://img.icons8.com/ios/50/bank-card-back-side--v1.png" alt=""> -->
+                    <li data-tab-target="#card" class="active">Card Payment</li>
+                    <li data-tab-target="#bank">Bank Payment</li>
+                    <li data-tab-target="#others">Others</li>
+                </ul>
             </div>
-
-            <!-- card Payment -->
-            <!-- <div class="hr">OR</div> -->
-            <form class="card-payment-form" id="payment-form">
-                <h3>Card Payment</h3>
-                <div id="card-container"></div>
-                <button id="card-button" type="button">Pay $1.00</button>
-            </form>
-
-            <!-- Bank Payment -->
-            <!-- <div class="hr">OR</div> -->
-            <form class="ach-payment-form" id="payment-form">
-                <fieldset class="buyer-inputs">
-                <h3>Bank Payment</h3>
-                 <input
-                   type="text"
-                   autocomplete="given-name"
-                   aria-required="true"
-                   aria-label="First Name"
-                   required="required"
-                   placeholder="Given Name"
-                   name="givenName"
-                   spellcheck="false"
-                 />
-           
-                 <input
-                   type="text"
-                   autocomplete="family-name"
-                   aria-required="true"
-                   aria-label="Last Name"
-                   required="required"
-                   placeholder="Family Name"
-                   name="familyName"
-                   spellcheck="false"
-                 />
-               </fieldset>
-               <button id="ach-button" type="button">Pay with Bank Account</button>
-              </form>
-        </div>
         
+            <div class="tab-payment-options">
+                <div id="card" class="tab-content active">
+                    <!-- card Payment form-->
+                    <form class="card-payment-form" id="payment-form">
+                        <h3>Card Payment</h3>
+                            <input
+                            type="text"
+                            autocomplete="card-holder-name"
+                            aria-required="true"
+                            aria-label="Card Holder Name"
+                            required="required"
+                            placeholder="Card Holder Name"
+                            name="cardHolderName"
+                            spellcheck="false"
+                            />
+                        <div id="card-container"></div>
+                        <button id="card-button" type="button">Pay $1.00</button>
+                    </form>
+                </div>
+                <div id="bank" class="tab-content">
+                    <!-- Bank Payment form -->
+                    <form class="ach-payment-form" id="payment-form">
+                            <h3>Bank Payment</h3>
+                            <input
+                            type="text"
+                            autocomplete="given-name"
+                            aria-required="true"
+                            aria-label="First Name"
+                            required="required"
+                            placeholder="Given Name"
+                            name="givenName"
+                            spellcheck="false"
+                            />
+                    
+                            <input
+                            type="text"
+                            autocomplete="family-name"
+                            aria-required="true"
+                            aria-label="Last Name"
+                            required="required"
+                            placeholder="Family Name"
+                            name="familyName"
+                            spellcheck="false"
+                            />
+                        <button id="ach-button" type="button">Pay with Bank Account</button>
+                    </form>
+                </div>
+                <div id="others" class="tab-content">
+                    <div class="pay-btn-container">
+                        <div class= "flex-item-pay-btn" id="google-pay-button"></div>
+                        <div class= "flex-item-pay-btn" id="test-button"><span>APPLE PAY</span></div>
+                        <div class= "flex-item-pay-btn" id="cash-app-pay"></div>
+                        <!-- <div id="apple-pay-button"></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Total Summary -->
         <div class="flex-item-right" id="order-total">
+            <div>
+                <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
+                <div>
+                    <span class="product-desc">Swivel chair</span><br>
+                    <span class="product-price">$47.00</span>
+
+                </div>
+            </div>
+            <hr>
             <div>
                 <img class="product-img" src="/static/images/chair.jpg" alt="" srcset=""> 
                 <div>

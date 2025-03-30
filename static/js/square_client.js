@@ -2,6 +2,25 @@
 const appId = 'sandbox-sq0idb-yZsFhf9evWm-BkGntPWJXQ';
 const locationId = 'LDTPR9XCEFDF9';
 
+const tabs = document.querySelectorAll('[data-tab-target]');
+const tabContents = document.querySelectorAll('.tab-content');
+const tabOptions = document.querySelectorAll('.tabs');
+
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    const target = document.querySelector(tab.dataset.tabTarget);
+    tabContents.forEach(tabContent => {
+      tabContent.classList.remove('active');
+    });
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+    target.classList.add('active');
+    tab.classList.add('active');
+  })
+})
+
+
 // async function initializeCard(payments) {
 //     const card = await payments.card();
 //     await card.attach('#card-container'); 
@@ -9,7 +28,7 @@ const locationId = 'LDTPR9XCEFDF9';
 //   }
 // const cashAppBtn = document.querySelector("#cash-app-pay");
 // document.querySelector("#cash-app-pay").shadowRoot.querySelector("button").style.color("red");
-console.log(document.querySelector("#cash_app_pay_v1_element"));
+// console.log(document.querySelector("#cash_app_pay_v1_element"));
 // cash_app_pay_v1_element
 // div
 // ShadowRoot
