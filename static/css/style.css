@@ -11,8 +11,10 @@ body{
 
 /* flexible container for whole page */
 .flex-container{
+    margin: auto;
     display: flex;
     height: fit-content;
+    width: 1220px;
     border-top: 2px solid #F4F4F4;
     border-right: 2px solid #F4F4F4;
     border-bottom: 2px solid #F4F4F4;
@@ -57,8 +59,8 @@ body{
     display: block;
 }
 .tabs .active{
-    border-bottom: 6px solid rgb(153, 19, 1);
-    color: rgb(128, 15, 0);
+    border-bottom: 6px solid #C8102E;
+    color: #C8102E;
 }
 .tabs {
     list-style-type: none;
@@ -137,7 +139,7 @@ body{
 button{
     width: 240px;
     height: 48px;
-    background-color: black;
+    background-color: #C8102E;
     color: white;
     border-radius: 5px;
     border: none;
@@ -159,7 +161,7 @@ button{
     color: rgba(109, 109, 109, 0.9);
 }
 
-.order-summary{
+.order-total{
     margin: 20px;
 
 }

@@ -5,6 +5,25 @@ const locationId = 'LDTPR9XCEFDF9';
 const tabs = document.querySelectorAll('[data-tab-target]');
 const tabContents = document.querySelectorAll('.tab-content');
 const tabOptions = document.querySelectorAll('.tabs');
+let card;
+
+const verificationDetails = {
+  amount: '10.00',
+  billingContact: {
+    givenName: 'John',
+    familyName: 'Doe',
+    email: 'john.doe@square.example',
+    phone: '3214563987',
+    addressLines: ['123 Main Street', 'Apartment 1'],
+    city: 'London',
+    state: 'LND',
+    countryCode: 'GB',
+  },
+  currencyCode: 'GBP',
+  intent: 'CHARGE',
+  customerInitiated: true,
+  sellerKeyedIn: false
+};
 
 tabs.forEach(tab=>{
   tab.addEventListener('click', ()=>{
@@ -20,72 +39,108 @@ tabs.forEach(tab=>{
   })
 })
 
-
-// async function initializeCard(payments) {
-//     const card = await payments.card();
-//     await card.attach('#card-container'); 
-//     return card; 
-//   }
-// const cashAppBtn = document.querySelector("#cash-app-pay");
-// document.querySelector("#cash-app-pay").shadowRoot.querySelector("button").style.color("red");
-// console.log(document.querySelector("#cash_app_pay_v1_element"));
-// cash_app_pay_v1_element
-// div
-// ShadowRoot
-// button
 document.addEventListener('DOMContentLoaded', async function () {
 
   if (!window.Square) {
     throw new Error('Square.js failed to load properly');
   }
   const payments = window.Square.payments(appId, locationId);
-  
   try {
-    await initializeCard(payments);
+    card = await initializeCard(payments);
     await initializeGooglePay(payments);
     await initializeCashApp(payments);
     await initializeACH(payments);
     // await initializeApplePay(payments);
   } catch (e) {
     console.error('Initializing Card failed', e);
-    return;
   }
-
-  // let payment_methods = document.getElementsByClassName("payment-method");
-
-  // Array.from(payment_methods).forEach((method)=>{
-  //   if (method.checked){
-  //     initializePaymentType(method.value,payments);
-  //   }
-  //   method.addEventListener('click', ()=>{
-  //     console.log(method.value);
-  //     initializePaymentType(method.value,payments);
-  //   })
-  // })
-//    let card;
-//    try {
-//      card = await initializeCard(payments);
-//    } catch (e) {
-//      console.error('Initializing Card failed', e);
-//      return;
-//    }
- 
-   // Step 5.2: create card payment
  });
-
-//  async function initializePaymentType(paymentType, payments) {
-
-//   if (paymentType === 'card') {
-//     const card = await payments.card();
-//     await card.attach('#card-container'); 
-//     console.log(card);
-    
-//     return card;
-    
-//   }
+//  ==========================================================
+//add event listener to card payment button
+const cardButton = document.getElementById('card-button');
+cardButton.addEventListener('click', async function (event) {
+  await handlePaymentMethodSubmission(event, card);
   
-//  }
+});
 
+//submit payment form
+async function handlePaymentMethodSubmission(event, card) {
+  event.preventDefault();
+  
+  try {
+    // disable the submit button as we await tokenization and make a payment request.
+    cardButton.disabled = true;
+    // const token = await tokenize(card,verificationDetails);
+    // console.log(token);
+    // const paymentResults = await createPayment(token);
+    displayPaymentResults('SUCCESS');
+
+    // console.log('Payment Success', paymentResults);
+  } catch (e) {
+    // cardButton.disabled = false;
+    displayPaymentResults('FAILURE');
+    console.error(e.message);
+  }
+}
+
+//get token
+async function tokenize(paymentMethod, verificationDetails) {
+  const tokenResult = await paymentMethod.tokenize(verificationDetails);
+  if (tokenResult.status === 'OK') {
+    return tokenResult.token;
+  } else {
+    let errorMessage = `Tokenization failed with status: ${tokenResult.status}`;
+    if (tokenResult.errors) {
+      errorMessage += ` and errors: ${JSON.stringify(
+        tokenResult.errors,
+      )}`;
+    }
+    throw new Error(errorMessage);
+  }
+}
+
+//make a payment
+async function createPayment(token) {
+  const body = JSON.stringify({
+    locationId,
+    sourceId: token,
+    idempotencyKey: window.crypto.randomUUID(),
+  });
+  const paymentResponse = await fetch('/process-payment', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body,
+  });
+  if (paymentResponse.ok) {
+    return paymentResponse.json();
+  }
+  const errorBody = await paymentResponse.text();
+  throw new Error(errorBody);
+}
+
+
+//payment result
+async function displayPaymentResults(status) {  
+  if (status === 'SUCCESS') {
+    console.log('success');
+    window.location.href = "/payment-success";
+  //   await fetch('/payment-success', {
+  //     method: 'GET'
+  //   }).then((res)=>console.log(res.json));
+  //   // window.location.href = res.text()
+
+  // } else {
+  //   console.log('failure');
+  //   await fetch('/payment-failure', {
+  //     method: 'GET'
+  //   });
+  }
+}
+
+
+// =====================================================
  async function initializeCard(payments) {
   const card = await payments.card();
   await card.attach('#card-container'); 
